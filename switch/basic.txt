@@ -1,0 +1,28 @@
+! enable terminal
+enable
+conf terminal
+
+! Set the switch's hostname
+hostname S1
+
+! Enable privileged EXEC mode
+enable secret cisco123
+
+! Set a banner message for unauthorized access
+banner motd ^C
+Unauthorized access is prohibited!
+^C
+
+! Configure console access
+line console 0
+ login
+ password cisco123
+ logging synchronous
+exit
+
+! Configure virtual terminal (VTY) access
+line vty 0 4
+ login
+ password cisco123
+ transport input telnet ssh
+exit

@@ -1,0 +1,6 @@
+enable
+config t
+ip domain-name spelde.local
+crypto key generate rsa
+2048
+ip ssh version 2
