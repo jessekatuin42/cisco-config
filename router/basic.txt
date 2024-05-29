@@ -1,3 +1,7 @@
+! enable terminal
+enable
+conf terminal
+
 ! Set the router's hostname
 hostname Router
 
