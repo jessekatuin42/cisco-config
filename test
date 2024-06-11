@@ -1,0 +1,131 @@
+default gateway instellen op pc's
+
+
+R1
+serial 0/1/0 192.168.12.1 255.255.255.252
+serial 0/1/1 192.168.13.1 255.255.255.252
+gig 0/0/0 192.168.1.1 255.255.255.0
+gig 0/0/1 192.168.2.1 255.255.255.0
+
+
+R2
+serial 0/1/0 192.168.23.2 255.255.255.252
+serial 0/1/1 192.168.13.2 255.255.255.252
+gig 0/0/0 192.168.5.1 255.255.255.0
+gig 0/0/1 192.168.6.1 255.255.255.0
+
+
+R3
+serial 0/1/1 192.168.23.1 255.255.255.252
+serial 0/1/0 192.168.12.2 255.255.255.252
+gig 0/0/1 192.168.3.1 255.255.255.0
+gig 0/1/1 192.168.4.1 255.255.255.0
+
+
+R1
+router ospf 1
+network 192.168.12.0 0.0.0.3 area 0
+network 192.168.13.0 0.0.0.3 area 0
+network 192.168.1.0 0.0.0.255 area 0
+network 192.168.2.0 0.0.0.255 area 0
+
+R2
+router ospf 1
+network 192.168.12.0 0.0.0.3 area 0
+network 192.168.23.0 0.0.0.3 area 0
+network 192.168.3.0 0.0.0.255 area 0
+network 192.168.4.0 0.0.0.255 area 0
+
+R3
+router ospf 1
+network 192.168.13.0 0.0.0.3 area 0
+network 192.168.23.0 0.0.0.3 area 0
+network 192.168.5.0 0.0.0.255 area 0
+network 192.168.6.0 0.0.0.255 area 0
+
+
+R1
+enable
+configure terminal
+hostname R1
+enable secret cisco
+service password-encryption
+line console 0
+password cisco
+login
+logging synchronous
+exit
+line vty 0 4
+password cisco
+login
+transport input ssh
+exit
+username R1 secret cisco
+ip domain-name noorderpoort.local
+crypto key generate rsa
+2048
+ip ssh version 2
+banner motd #Onbevoegde toegang verboden. Toegang alleen voor geautoriseerde gebruikers.#
+no ip domain-lookup
+logging buffered 4096 debugging
+no cdp run
+exit
+copy running-config startup-config
+
+
+R2
+enable
+configure terminal
+hostname R2
+enable secret cisco
+service password-encryption
+line console 0
+password cisco
+login
+logging synchronous
+exit
+line vty 0 4
+password cisco
+login
+transport input ssh
+exit
+username R2 secret cisco
+ip domain-name noorderpoort.local
+crypto key generate rsa
+2048
+ip ssh version 2
+banner motd #Onbevoegde toegang verboden. Toegang alleen voor geautoriseerde gebruikers.#
+no ip domain-lookup
+logging buffered 4096 debugging
+no cdp run
+exit
+copy running-config startup-config
+
+
+R3
+enable
+configure terminal
+hostname R3
+enable secret cisco
+service password-encryption
+line console 0
+password cisco
+login
+logging synchronous
+exit
+line vty 0 4
+password cisco
+login
+transport input ssh
+exit
+username R3 secret cisco
+ip domain-name noorderpoort.local
+crypto key generate rsa
+2048
+ip ssh version 2
+banner motd #Onbevoegde toegang verboden. Toegang alleen voor geautoriseerde gebruikers.#
+no ip domain-lookup
+logging buffered 4096 debugging
+no cdp run
+exit
+copy running-config startup-config

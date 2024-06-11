@@ -1,6 +1,10 @@
+! enable terminal
 enable
-config t
-ip domain-name spelde.local
+conf terminal
+
+! enable SSH
+username R1 secret cisco
+ip domain-name noorderpoort.local
 crypto key generate rsa
 2048
 ip ssh version 2

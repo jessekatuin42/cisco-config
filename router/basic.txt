@@ -2,25 +2,33 @@
 enable
 conf terminal
 
-! Set the router's hostname
-hostname Router
+! set the hostname
+hostname R1
 
-! Enable privileged EXEC mode
-enable secret cisco123
+! set encryption
+enable secret cisco
+service password-encryption
 
-! Set a banner message for unauthorized access
-banner motd ^C
-Unauthorized access is prohibited!
-^C
-
-! Configure console access
+! set password on console
 line console 0
- login
- password cisco123
- logging synchronous
+password cisco
+login
+logging synchronous
+exit
 
-! Configure virtual terminal (VTY) access
+! set password on vty
 line vty 0 4
- login
- password cisco123
- transport input telnet ssh
+password cisco
+login
+transport input ssh
+exit
+
+! set banner
+banner motd #Toegang alleen voor geautoriseerde gebruikers.#
+no ip domain-lookup
+logging buffered 4096 debugging
+no cdp run
+exit
+
+! Copy to running config (save forever)
+copy running-config startup-config

@@ -1,21 +1,10 @@
-! enable terminal
-enable
-conf terminal
-hostname R2
+serial 0/1/0 192.168.23.2 255.255.255.252
+serial 0/1/1 192.168.13.2 255.255.255.252
+gig 0/0/0 192.168.5.1 255.255.255.0
+gig 0/0/1 192.168.6.1 255.255.255.0
 
-! Interfaces R2
-interface Serial0/1/0
- ip address 172.124.1.1 255.255.255.252   ! Verbinding met R1
- no shutdown
-exit
-interface Serial0/1/1
- ip address 172.124.1.9 255.255.255.252   ! Verbinding met R2
- no shutdown
-exit
-
-! OSPF-configuratie
 router ospf 1
- network 172.124.1.0 0.0.0.3 area 0      ! R1-S2
- network 172.124.1.4 0.0.0.3 area 0      ! R2-S3
- network 172.124.1.8 0.0.0.3 area 0      ! R3-S1
-exit
+network 192.168.12.0 0.0.0.3 area 0
+network 192.168.23.0 0.0.0.3 area 0
+network 192.168.3.0 0.0.0.255 area 0
+network 192.168.4.0 0.0.0.255 area 0
