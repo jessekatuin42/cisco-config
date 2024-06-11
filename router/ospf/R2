@@ -1,10 +1,29 @@
-serial 0/1/0 192.168.23.2 255.255.255.252
-serial 0/1/1 192.168.13.2 255.255.255.252
-gig 0/0/0 192.168.5.1 255.255.255.0
-gig 0/0/1 192.168.6.1 255.255.255.0
+! enable terminal
+enable
+conf terminal
+
+interface serial0/1/0
+ip address 192.168.13.2 255.255.255.252
+no shutdown
+exit
+
+interface serial0/1/1
+ip address 192.168.23.2 255.255.255.252
+no shutdown
+exit
+
+interface GigabitEthernet0/0/0
+ip address 192.168.3.1 255.255.255.0
+no shutdown
+exit
+interface GigabitEthernet0/0/1
+ip address 192.168.4.1 255.255.255.0
+no shutdown
+exit
 
 router ospf 1
-network 192.168.12.0 0.0.0.3 area 0
+router-id 2.2.2.2
+network 192.168.13.0 0.0.0.3 area 0
 network 192.168.23.0 0.0.0.3 area 0
 network 192.168.3.0 0.0.0.255 area 0
 network 192.168.4.0 0.0.0.255 area 0

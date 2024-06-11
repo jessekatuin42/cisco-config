@@ -26,7 +26,6 @@ exit
 ! set banner
 banner motd #Toegang alleen voor geautoriseerde gebruikers.#
 no ip domain-lookup
-logging buffered 4096 debugging
 no cdp run
 exit
 
