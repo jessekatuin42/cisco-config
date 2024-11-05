@@ -1,0 +1,4 @@
+show access-lists
+show running-config | begin access-list
+show ip access-lists
+clear access-list counters
