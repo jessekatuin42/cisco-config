@@ -1,0 +1,15 @@
+enable
+conf t
+
+ip access-list extended BlockPing
+ deny icmp any host 172.16.1.0
+ deny icmp any host 172.16.10.0
+ permit ip any any
+ exit
+interface serial0/0/0
+ip access-group BlockPing out
+exit
+
+interface serial0/0/1
+ip access-group BlockPing out
+exit

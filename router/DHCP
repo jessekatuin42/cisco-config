@@ -1,0 +1,29 @@
+ip dhcp pool (naam)
+network 192.168.10.0 255.255.255.0
+default-router 192.168.10.1
+exit
+
+ip dhcp pool vlan1
+network 192.168.10.0 255.255.255.0
+default-router 192.168.10.1
+exit
+
+ip dhcp pool vlan2
+network 192.168.20.0 255.255.255.0
+default-router 192.168.20.1
+exit
+
+ip dhcp pool vlan3
+network 192.168.30.0 255.255.255.0
+default-router 192.168.30.1
+exit
+
+ip dhcp pool vlan4
+network 192.168.40.0 255.255.255.0
+default-router 192.168.40.1
+exit
+
+ip dhcp pool vlan5
+network 192.168.50.0 255.255.255.0
+default-router 192.168.50.1
+exit
